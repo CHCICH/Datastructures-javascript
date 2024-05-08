@@ -1,5 +1,6 @@
 # Node Class
 
+
 ## Description
 The `Node` class represents a node in a linked list.
 
