@@ -1,13 +1,18 @@
 
-// the Node class is the core element of the linked list
-class Node{
-    constructor(head){
+// the Nodes class is the core element of the linked list
+
+class Nodes{
+    head:any;
+    next:any
+    constructor(head:any){
         this.head = head;
         this.next = null;
     }
 }
 
 class LinkedList{
+    head:any;
+    next:any;
     constructor(head){
         if(head){
             this.head = head;
@@ -22,11 +27,11 @@ class LinkedList{
     createFromArray(arr){
        
         if(arr.length !== 0){
-            let last = new Node(arr[arr.length -1]);
+            let last = new Nodes(arr[arr.length -1]);
             let curr;
             if(arr.length >1){
                 for(let i = arr.length-2 ;i>0 ; i--){
-                    curr = new Node(arr[i]);
+                    curr = new Nodes(arr[i]);
                     curr.next = last;
                     last = curr;
                 }
@@ -56,11 +61,11 @@ class LinkedList{
             return 0;
         }
     }
-    //this method do not change the linked list it's just returning an linked list where all the nodes are inside of an array 
+    //this method do not change the linked list it's just returning an linked list where all the Nodess are inside of an array 
     // and where the order of the links is from left to right 
     transformToAnArray(test){
         if(this.head !== null){
-            let curr = this;
+            let curr:Nodes = this;
             let arr = [];
             try{
             for(let i = 0 ; i<this.size();i++){
@@ -107,15 +112,17 @@ class LinkedList{
     reverse(){
         let curr = this;
         let prev;
-        let tempNode = null;
+        let tempNodes:Nodes|null = null;
         while(curr !== null){
-            prev = new Node(curr.head);
-            prev.next = tempNode;
-            tempNode = prev;
+            prev = new Nodes(curr.head);
+            prev.next = tempNodes;
+            tempNodes = prev;
             curr = curr.next;
         }
-        this.head = tempNode.head;
-        this.next = tempNode.next;  
+        if(this.head != null && this.next != null){
+            this.head = tempNodes.head;
+            this.next = tempNodes.next;  
+        }
     }
     //this method prints the Linked List 
     print(options){
@@ -166,11 +173,11 @@ class LinkedList{
         let arr = this.transformToAnArray();
         arr = arr.sort((a,b) => a-b);
         if(arr.length !== 0){
-            let last = new Node(arr[arr.length -1]);
+            let last = new Nodes(arr[arr.length -1]);
             let curr;
             if(arr.length >1){
                 for(let i = arr.length-2 ;i>0 ; i--){
-                    curr = new Node(arr[i]);
+                    curr = new Nodes(arr[i]);
                     curr.next = last;
                     last = curr;
                 }
